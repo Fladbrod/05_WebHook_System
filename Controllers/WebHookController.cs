@@ -32,12 +32,19 @@ public class WebhookController : ControllerBase
     [HttpPost("ping")]
     public async Task<IActionResult> PingWebhooks()
     {
-        var testEvent = new WebhookEvent
+        var eventTypes = new List<string> { "PaymentReceived", "PaymentProcessed", "InvoiceGenerated", "InvoiceSent" };
+
+        foreach (var eventType in eventTypes)
         {
-            Type = "ping",
-            Payload = "{\"message\": \"This is a test webhook event from ping.\"}"
-        };
-        await _webhookManagementService.InvokeWebhooksAsync(testEvent);
+            var testEvent = new WebhookEvent
+            {
+                Type = eventType,
+                Payload = $"{{\"message\": \"This is a test webhook event for {eventType}.\"}}"
+            };
+            await _webhookManagementService.InvokeWebhooksAsync(testEvent);
+        }
+    
         return Ok();
     }
+
 }
