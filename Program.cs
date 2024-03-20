@@ -9,6 +9,7 @@ builder.Services.AddDbContext<WebhookDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IWebhookManagementService, WebhookManagementService>();
 builder.Services.AddScoped<EventService>();
