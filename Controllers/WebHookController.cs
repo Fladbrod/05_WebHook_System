@@ -32,7 +32,6 @@ public class WebhookController : ControllerBase
     [HttpPost("ping")]
     public async Task<IActionResult> PingWebhooks()
     {
-        // Trigger a test event with dummy data
         var testEvent = new WebhookEvent
         {
             Type = "ping",

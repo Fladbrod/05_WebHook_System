@@ -16,6 +16,11 @@ public class WebhookManagementService : IWebhookManagementService
 
     public async Task AddSubscriptionAsync(WebhookSubscription subscription)
     {
+        if (!Uri.IsWellFormedUriString(subscription.Url, UriKind.Absolute))
+        {
+            throw new ArgumentException("The URL provided is not a valid absolute URI.");
+        }
+
         await _context.WebhookSubscriptions.AddAsync(subscription);
         await _context.SaveChangesAsync();
     }
@@ -32,7 +37,6 @@ public class WebhookManagementService : IWebhookManagementService
 
     public async Task InvokeWebhooksAsync(WebhookEvent webhookEvent)
     {
-        // Filter the subscriptions based on the event type
         var relevantSubscriptions = await _context.WebhookSubscriptions
             .Where(sub => sub.EventTypes.Contains(webhookEvent.Type))
             .ToListAsync();
