@@ -26,7 +26,7 @@ public class WebhookController : ControllerBase
     public async Task<IActionResult> UnregisterWebhook(Guid id)
     {
         await _webhookManagementService.RemoveSubscriptionAsync(id);
-        return Ok();
+        return Ok("Successfully unregistered webhook.");
     }
 
     [HttpPost("ping")]
@@ -44,7 +44,7 @@ public class WebhookController : ControllerBase
             await _webhookManagementService.InvokeWebhooksAsync(testEvent);
         }
     
-        return Ok();
+        return Ok("Webhooks have been pinged.");
     }
 
 }

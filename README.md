@@ -2,7 +2,7 @@
 
 The Exposee service allows for the registration and triggering of webhooks based on specific event types related to payment and invoice processes.
 
-## Getting Started
+### Getting Started
 
 To integrate with the Exposee service, you will need to follow these steps:
 
@@ -40,10 +40,32 @@ You can test that your integration can call and receive webhooks by sending a PO
 
 ### Event Types
 The following event types are supported:
-* PaymentInitiated
 * PaymentReceived
 * PaymentProcessed
 * InvoiceGenerated
 * InvoiceSent
 
 # Integrator
+
+### Subscribing to Webhook endpoint
+![Webhook image](./images/Subscribe-alert.jpg)
+
+### Unsubscribing to Webhook endpoint
+![Webhook image](./images/Unsubscribe-alert.jpg)
+
+In swagger when calling the endpoint to unsubscribe to alert:
+
+![Webhook image](./images/Unsubscribe-alert-success.jpg)
+
+### Triggering an event through /ping:
+![Ping image](./images/Ping-success.jpg)
+
+Receive endpoint:
+
+![Receive image](./images/Receive-endpoint.jpg)
+
+Output:
+
+![Output image](./images/Ping-response.jpg)
+
+![Output image](./images/http-requests.jpg)

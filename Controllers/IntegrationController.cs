@@ -18,7 +18,21 @@ public class IntegrationController : ControllerBase
     public async Task<IActionResult> AlertEvent()
     {
         var client = _httpClientFactory.CreateClient();
-        var response = await client.PostAsJsonAsync("https://webhookappkea.azurewebsites.net/monitoring/alert", new { url = "https://164ad82f53a35193703ddc0dcaff6eab.serveo.net/Monitoring/receive\n", password = "1234" });
+        var response = await client.PostAsJsonAsync("https://2fa1fb3d8f11edb548c53444825dc1ca.serveo.net/monitoring/alert", 
+            new { url = "https://9d1c8fa74bffaf86790daee462230a57.serveo.net/Integration/receive", password = "1234" });
+        var content = await response.Content.ReadAsStringAsync();
+        return Ok(new { data = content });
+    }
+    
+    [HttpDelete("alert")]
+    public async Task<IActionResult> UnsubscribeAlert()
+    {
+        var client = _httpClientFactory.CreateClient();
+        var request = new HttpRequestMessage(HttpMethod.Delete, "https://2fa1fb3d8f11edb548c53444825dc1ca.serveo.net/monitoring/alert")
+        {
+            Content = JsonContent.Create(new { url = "https://9d1c8fa74bffaf86790daee462230a57.serveo.net/Integration/receive", password = "1234" })
+        };
+        var response = await client.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
         return Ok(new { data = content });
     }
@@ -27,7 +41,20 @@ public class IntegrationController : ControllerBase
     public async Task<IActionResult> AccessEvent()
     {
         var client = _httpClientFactory.CreateClient();
-        var response = await client.PostAsJsonAsync("https://webhookappkea.azurewebsites.net/monitoring/access", new { url = "https://164ad82f53a35193703ddc0dcaff6eab.serveo.net/Monitoring/receive\n", password = "1234" });
+        var response = await client.PostAsJsonAsync("https://2fa1fb3d8f11edb548c53444825dc1ca.serveo.net/monitoring/access", new { url = "https://9d1c8fa74bffaf86790daee462230a57.serveo.net/Integration/receive", password = "1234" });
+        var content = await response.Content.ReadAsStringAsync();
+        return Ok(new { data = content });
+    }
+    
+    [HttpDelete("access")]
+    public async Task<IActionResult> UnsubscribeAccess()
+    {
+        var client = _httpClientFactory.CreateClient();
+        var request = new HttpRequestMessage(HttpMethod.Delete, "https://2fa1fb3d8f11edb548c53444825dc1ca.serveo.net/monitoring/access")
+        {
+            Content = JsonContent.Create(new { url = "https://9d1c8fa74bffaf86790daee462230a57.serveo.net/Integration/receive", password = "1234" })
+        };
+        var response = await client.SendAsync(request);
         var content = await response.Content.ReadAsStringAsync();
         return Ok(new { data = content });
     }
