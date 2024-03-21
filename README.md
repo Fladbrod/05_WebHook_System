@@ -48,24 +48,24 @@ The following event types are supported:
 # Integrator
 
 ### Subscribing to Webhook endpoint
-![Webhook image](./images/Subscribe-alert.jpg)
+![Webhook image](images/Subscribe-alert.jpg)
 
 ### Unsubscribing to Webhook endpoint
-![Webhook image](./images/Unsubscribe-alert.jpg)
+![Webhook image](images/Unsubscribe-alert.jpg)
 
 In swagger when calling the endpoint to unsubscribe to alert:
 
-![Webhook image](./images/Unsubscribe-alert-success.jpg)
+![Webhook image](images/Unsubscribe-alert-success.jpg)
 
 ### Triggering an event through /ping:
-![Ping image](./images/Ping-success.jpg)
+![Ping image](images/Ping-success.jpg)
 
 Receive endpoint:
 
-![Receive image](./images/Receive-endpoint.jpg)
+![Receive image](images/Receive-endpoint.jpg)
 
 Output:
 
-![Output image](./images/Ping-response.jpg)
+![Output image](images/Ping-response.jpg)
 
-![Output image](./images/http-requests.jpg)
+![Output image](images/http-requests.jpg)
